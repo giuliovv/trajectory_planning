@@ -14,14 +14,10 @@ function [leftpoint, rightpoint] = get_border(x0, y0, x1, y1, w_left0, w_left1, 
         leftpoint = [x(1), y(1)];
         rightpoint = [x(2), y(2)];
     else
-        disp((x(1)-oldleft(1))^2 + (y(1)-oldleft(2))^2)
-        disp( (x(1)-oldright(1))^2 + (y(1)-oldright(2))^2)
         if (x(1)-oldleft(1))^2 + (y(1)-oldleft(2))^2 < (x(1)-oldright(1))^2 + (y(1)-oldright(2))^2
-            disp("Left")
             leftpoint = [x(1), y(1)];
             rightpoint = [x(2), y(2)];
         else
-            disp("Right")
             leftpoint = [x(2), y(2)];
             rightpoint = [x(1), y(1)];
         end
