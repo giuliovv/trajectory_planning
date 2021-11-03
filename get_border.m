@@ -1,4 +1,4 @@
-function leftpoint= get_border(x0, y0, x1, y1, w_left0, w_left1, w_right0, w_right1)
+function [leftpoint, rightpoint]= get_border(x0, y0, x1, y1, w_left0, w_left1, w_right0, w_right1)
     A = [x0 y0]; 
     B = [x1 y1]; 
     Clen = (w_left0+w_left1 + w_right0+w_right1)/2;
