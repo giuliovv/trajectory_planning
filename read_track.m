@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-track = readtable("tracks/Sochi.csv");
+track = readtable("tracks/Monza.csv");
 n = height(track);
 leftpoints = zeros(n-1, 2);
 rightpoints =  zeros(n-1, 2);
