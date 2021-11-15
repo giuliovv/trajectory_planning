@@ -7,8 +7,8 @@ function [x,y] = mycoordinates(n,rightpoints,leftpoints,alpha)
 %           alpha         = optimization variable, needed to express where
 %                          the car has to stay inside the track
 %
-%  OUTPUTS: x             = value of x at each step
-%           y             = value of y at each step
+%  OUTPUTS: x             = values of x at each step
+%           y             = values of y at each step
 
 for idx = 1:n-1
     x(idx)=rightpoints(idx,1)+alpha(idx)*(leftpoints(idx,1)-rightpoints(idx,1));
