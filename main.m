@@ -1,5 +1,5 @@
 clear all
-clean all
+close all
 clc
 
 %parameters of car and circuit
@@ -8,6 +8,7 @@ e=0.40;
 
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/Monza.csv");
+n = height(rightpoints);
 
 %initialization of the coefficient alpha
 alpha = 0.5*zeros(n);
