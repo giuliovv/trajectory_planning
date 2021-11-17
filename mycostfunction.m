@@ -1,9 +1,11 @@
-function J= mycostfunction(n,x,y)
+function J= mycostfunction(n,rightpoints,leftpoints,alpha)
 
 % MYCOSTFUNCTION computes the value of the cost function. 
 %  INPUTS:  n             = number of segments dividing the track
-%           x             = values of x at each step
-%           y             = values of y at each step
+%           rightpoints   = coordinates of the inner points of the track
+%           leftpoints    = coordinates of the outer points of the track
+%           alpha         = optimization variable, needed to express where
+%                          the car has to stay inside the track
 %
 %  OUTPUTS: J             = value of the cost function
 
@@ -11,9 +13,12 @@ function J= mycostfunction(n,x,y)
 kl=1;
 kr=1;
 
+
+[x,y] = mycoordinates(n,rightpoints,leftpoints,alpha);
+
 %cost function
 Jl=0;
-for idx = 1:n-2
+for idx = 2:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     Jl=Jl+ds^2;
 end
