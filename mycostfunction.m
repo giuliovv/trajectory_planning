@@ -1,4 +1,4 @@
-  function [j, gradient]= mycostfunction(n,rightpoints,leftpoints,alpha)
+  function [J, gradient]= mycostfunction(n,rightpoints,leftpoints,alpha)
 
 % MYCOSTFUNCTION computes the value of the cost function. 
 %  INPUTS:  n             = number of segments dividing the track
@@ -19,7 +19,7 @@ kr=1;
 
 %cost function
 Jl=0;
-jld = 0;
+Jld = 0;
 for idx = 2:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     Jl=Jl+ds^2;
@@ -27,13 +27,14 @@ for idx = 2:n-2
     Jld=Jld+dsd;
 end
 Jr=0;
+Jrd=0;
 for idx = 3:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     dtheta=atan((y(idx+1)-y(idx))/(x(idx+1)-x(idx)))-atan((y(idx)-y(idx-1))/(x(idx)-x(idx-1)));
     rho=dtheta/ds;
     Jr=Jr+rho^2;
     dsd =(-((-leftpoints(idx-1, 2) + leftpoints(idx, 2) + rightpoints(idx-1, 2) - rightpoints(idx, 2))/(-alpha(idx)*(leftpoints(idx-1, 1) - rightpoints(idx-1, 1)) + alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) - rightpoints(idx-1, 1) + rightpoints(idx, 1)) + (-alpha(idx)*(leftpoints(idx-1, 2) - rightpoints(idx-1, 2)) + alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) - rightpoints(idx-1, 2) + rightpoints(idx, 2))*(leftpoints(idx-1, 1) - leftpoints(idx, 1) - rightpoints(idx-1, 1) + rightpoints(idx, 1))/(-alpha(idx)*(leftpoints(idx-1, 1) - rightpoints(idx-1, 1)) + alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) - rightpoints(idx-1, 1) + rightpoints(idx, 1))^2)/(1 + (-alpha(idx)*(leftpoints(idx-1, 2) - rightpoints(idx-1, 2)) + alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) - rightpoints(idx-1, 2) + rightpoints(idx, 2))^2/(-alpha(idx)*(leftpoints(idx-1, 1) - rightpoints(idx-1, 1)) + alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) - rightpoints(idx-1, 1) + rightpoints(idx, 1))^2) + ((leftpoints(idx+1, 2) - leftpoints(idx, 2) - rightpoints(idx+1, 2) + rightpoints(idx, 2))/(alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1)) + (alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))*(-leftpoints(idx+1, 1) + leftpoints(idx, 1) + rightpoints(idx+1, 1) - rightpoints(idx, 1))/(alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))^2)/(1 + (alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))^2/(alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))^2))/sqrt((alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))^2 + (alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))^2) + (-1.0/2.0*(alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))*(2*leftpoints(idx+1, 1) - 2*leftpoints(idx, 1) - 2*rightpoints(idx+1, 1) + 2*rightpoints(idx, 1)) - 1.0/2.0*(alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))*(2*leftpoints(idx+1, 2) - 2*leftpoints(idx, 2) - 2*rightpoints(idx+1, 2) + 2*rightpoints(idx, 2)))*(atan((alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))/(alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))) - atan((-alpha(idx)*(leftpoints(idx-1, 2) - rightpoints(idx-1, 2)) + alpha(idx)*(leftpoints(idx, 2) - rightpoints(idx, 2)) - rightpoints(idx-1, 2) + rightpoints(idx, 2))/(-alpha(idx)*(leftpoints(idx-1, 1) - rightpoints(idx-1, 1)) + alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) - rightpoints(idx-1, 1) + rightpoints(idx, 1))))/((alpha(idx)*(leftpoints(idx+1, 1) - rightpoints(idx+1, 1)) - alpha(idx)*(leftpoints(idx, 1) - rightpoints(idx, 1)) + rightpoints(idx+1, 1) - rightpoints(idx, 1))^2 + (alpha(idx)*(leftpoints(idx+1, 2) - rightpoints(idx+1, 2)) - alpha(idx)*((leftpoints(idx, 2) - rightpoints(idx, 2)) + rightpoints(idx+1, 2) - rightpoints(idx, 2))^2))^(3.0/2.0);
-    jrd = jrd+dsd;
+    Jrd = Jrd+dsd;
 end
 J=kl*Jl+kr*Jr;
 gradient = kl*Jld+kr*Jrd;
