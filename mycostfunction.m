@@ -23,7 +23,7 @@ for idx = 2:n-2
     Jl=Jl+ds^2;
 end
 Jr=0;
-for idx = 2:n-2
+for idx = 3:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     dtheta=atan((y(idx+1)-y(idx))/(x(idx+1)-x(idx)))-atan((y(idx)-y(idx-1))/(x(idx)-x(idx-1)));
     rho=dtheta/ds;
