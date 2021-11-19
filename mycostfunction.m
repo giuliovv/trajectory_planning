@@ -8,6 +8,7 @@
 %                          the car has to stay inside the track
 %
 %  OUTPUTS: J             = value of the cost function
+%               gradient     = value of the cost function gradient
 
 %initialization of kr and kl, tuning of their ratio
 kl=1;
