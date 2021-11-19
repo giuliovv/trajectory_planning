@@ -1,4 +1,4 @@
-function J= mycostfunction(n,rightpoints,leftpoints,alpha)
+  function J= mycostfunction(n,rightpoints,leftpoints,alpha)
 
 % MYCOSTFUNCTION computes the value of the cost function. 
 %  INPUTS:  n             = number of segments dividing the track
