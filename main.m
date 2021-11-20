@@ -11,7 +11,7 @@ e=0.40;
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
-alpha0 = rand(n, 1);
+alpha0 = ones(n, 1);
 
 %% Optimization parameters
 myoptions   =   myoptimset;
@@ -19,7 +19,7 @@ myoptions.ls_beta       = 0.3;
 myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
-myoptions.nitermax      = 5e2;
+myoptions.nitermax      = 5e3;
 myoptions.Hessmethod    = 'Exact';
 %myoptions.GN_funF       = TODO
 
@@ -27,7 +27,6 @@ myoptions.Hessmethod    = 'Exact';
 %different coordinates to pass through
 %cost function
 J = mycostfunction(n,rightpoints,leftpoints,alpha0);
-J
 
 [Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_gradient_hessian(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
 
