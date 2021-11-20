@@ -7,7 +7,7 @@ w=1.992;
 e=0.40;
 
 %track borders
-[rightpoints, leftpoints] = read_track("tracks/Monza.csv");
+[rightpoints, leftpoints] = read_track("tracks/IMS.csv");
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
