@@ -11,7 +11,7 @@ e=0.40;
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
-alpha0 = ones(n, 1);
+alpha0 = 0.1*ones(n, 1);
 
 %% Optimization parameters
 myoptions   =   myoptimset;
@@ -20,7 +20,7 @@ myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
 myoptions.nitermax      = 5e3;
-myoptions.Hessmethod    = 'Exact';
+myoptions.Hessmethod    = 'SD';
 %myoptions.GN_funF       = TODO
 
 %% Optimization routine
@@ -28,7 +28,7 @@ myoptions.Hessmethod    = 'Exact';
 %cost function
 J = mycostfunction(n,rightpoints,leftpoints,alpha0);
 
-[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_gradient_hessian(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
+[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
 
 %% Plot
  [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);

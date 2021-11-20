@@ -41,7 +41,7 @@ for idx = 1:n-2
 end
 Jr = 0;
 Jrd=zeros(n-3);
-Jrh=zeros(n-3, n-3, n, n);
+Jrh=zeros(n-3, n-3, 3, 3);
 for idx = 2:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     dtheta=atan((y(idx+1)-y(idx))/(x(idx+1)-x(idx)))-atan((y(idx)-y(idx-1))/(x(idx)-x(idx-1)));
