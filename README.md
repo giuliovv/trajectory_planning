@@ -9,4 +9,4 @@ the track bounds. We also set an extra sicurity margin e = 0.40 m, chosen thinki
 ## Results:
 
 Min length on Monza:
-![Monza min length](min_length.png?raw=true "Min len Monza")
+![Monza min length](assets/min_length.png?raw=true "Min len Monza")
