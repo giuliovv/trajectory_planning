@@ -12,7 +12,7 @@
 
 %initialization of kr and kl, tuning of their ratio
 kl=1;
-kr=1;
+kr=0;
 
 
 [x,y] = mycoordinates(n,rightpoints,leftpoints,alpha);

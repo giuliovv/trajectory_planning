@@ -30,3 +30,11 @@ J = mycostfunction(n,rightpoints,leftpoints,alpha0);
 J
 
 [Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_gradient_hessian(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
+
+%% Plot
+ [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);
+hold on
+plot(leftpoints(:, 1), leftpoints(:, 2), 'k')
+plot(rightpoints(:, 1), rightpoints(:,2), 'k')
+plot(x, y, 'r')
+hold off
