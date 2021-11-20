@@ -11,7 +11,7 @@ e=0.40;
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
-alpha0 = 0.5*zeros(n);
+alpha0 = 0.5*ones(n);
 
 %% Optimization parameters
 myoptions   =   myoptimset;
