@@ -19,7 +19,7 @@ myoptions.ls_beta       = 0.3;
 myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
-myoptions.nitermax      = 5e3;
+myoptions.nitermax      = 5e2;
 myoptions.Hessmethod    = 'SD';
 %myoptions.GN_funF       = TODO
 
