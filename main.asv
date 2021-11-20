@@ -29,4 +29,4 @@ myoptions.Hessmethod    = 'Exact';
 J = mycostfunction(n,rightpoints,leftpoints,alpha0);
 J
 
-[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_gradient_hessian(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
+[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
