@@ -21,11 +21,9 @@ kr=0;
 
 F = zeros(n, 1);
 
-Jl=0;
 Jld=zeros(n);
 for idx = 1:n-2
     ds=(x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2;
-    Jl=Jl+ds;
     
     F(idx) = kl*ds;
     
@@ -35,13 +33,11 @@ for idx = 1:n-2
     
 end
 
-Jr=0;
 Jrd=zeros(n);
 for idx = 2:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
     dtheta=atan((y(idx+1)-y(idx))/(x(idx+1)-x(idx)))-atan((y(idx)-y(idx-1))/(x(idx)-x(idx-1)));
     rho=dtheta/ds;
-    Jr=Jr+rho^2;
     
     F(idx+1) = F(idx+1)+kr*rho^2;
     
