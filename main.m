@@ -24,6 +24,7 @@ myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
 myoptions.nitermax      = 5e2;
+myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'Exact';
 %myoptions.GN_funF       = TODO
 
