@@ -6,6 +6,10 @@ clc
 w=1.992;
 e=0.40;
 
+%initialization of kr and kl, tuning of their ratio
+kl=0.5;
+kr=0.5;
+
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/IMS.csv");
 n = height(rightpoints);
@@ -20,15 +24,14 @@ myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
 myoptions.nitermax      = 5e2;
-myoptions.Hessmethod    = 'SD';
+myoptions.Hessmethod    = 'Exact';
 %myoptions.GN_funF       = TODO
 
 %% Optimization routine
 %different coordinates to pass through
 %cost function
-J = mycostfunction(n,rightpoints,leftpoints,alpha0);
 
-[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction(n,rightpoints,leftpoints,alpha),alpha0,myoptions);
+[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_gradient_hessian(n,rightpoints,leftpoints,alpha, kl, kr),alpha0,myoptions);
 
 %% Plot
  [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);

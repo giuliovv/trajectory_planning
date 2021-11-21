@@ -1,4 +1,4 @@
-  function [J, gradient]= mycostfunction(n,rightpoints,leftpoints,alpha)
+  function [J, gradient]= mycostfunction(n,rightpoints,leftpoints,alpha,kl,kr)
 
 % MYCOSTFUNCTION computes the value of the cost function. 
 %  INPUTS:  n             = number of segments dividing the track
@@ -9,10 +9,6 @@
 %
 %  OUTPUTS: J             = value of the cost function
 %               gradient     = value of the cost function gradient
-
-%initialization of kr and kl, tuning of their ratio
-kl=1;
-kr=0;
 
 
 [x,y] = mycoordinates(n,rightpoints,leftpoints,alpha);
