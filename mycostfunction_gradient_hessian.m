@@ -99,6 +99,7 @@ end
 
 % There are less analyzed points then alphas because of the idx+1
 hessian(end, end) = 1;
+hessian = hessian * 1e3;
 
 J=F'*F;
 %gradient = jacobian*F;
