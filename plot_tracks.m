@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-[rightpoints, leftpoints] = read_track("tracks/IMS.csv");
+[rightpoints, leftpoints] = read_track("tracks/Monza.csv");
 
 hold on
 plot(leftpoints(:, 1), leftpoints(:, 2), 'k')
