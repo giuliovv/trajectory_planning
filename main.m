@@ -7,18 +7,18 @@ w=1.992;
 e=0.40;
 
 %initialization of kr and kl, tuning of their ratio
-kl=100;
-kr=40;
+kl=400;
+kr=1000;
 
 %gamma in case of constraint
-gamma = 500;
+gamma = 5000;
 
 %track borders
-[rightpoints, leftpoints] = read_track("tracks/IMS.csv");
+[rightpoints, leftpoints] = read_track("tracks/Monza.csv");
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
-alpha0 = 0.5*ones(n, 1);
+alpha0 = -1*ones(n, 1);
 
 %% Optimization parameters
 myoptions   =   myoptimset;
@@ -30,6 +30,8 @@ myoptions.nitermax      = 5e2;
 myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'SD';
 %myoptions.GN_funF       = TODO
+
+myoptions.ls_nitermax   =	50; 
 
 %% Optimization routine
 %different coordinates to pass through
