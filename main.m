@@ -11,7 +11,7 @@ kl=0;
 kr=0;
 
 %gamma in case of constraint
-gamma = 5000000;
+gamma = 50;
 
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/Monza.csv");
@@ -31,7 +31,7 @@ myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'SD';
 %myoptions.GN_funF       = TODO
 
-myoptions.ls_nitermax   =	50; 
+myoptions.ls_nitermax   =	20; 
 
 %% Optimization routine
 %different coordinates to pass through
