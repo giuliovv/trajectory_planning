@@ -7,14 +7,14 @@ w=1.992;
 e=0.40;
 
 %initialization of kr and kl, tuning of their ratio
-kl=0;
-kr=10;
+kl= 0;
+kr=1;
 
 %gamma in case of constraint
 gamma = 0;
 
 %track borders
-[rightpoints, leftpoints] = read_track("tracks/IMS.csv");
+[rightpoints, leftpoints] = read_track("tracks/Monza.csv");
 n = height(rightpoints);
 
 %% Initialization of the coefficient alpha
@@ -32,7 +32,7 @@ myoptions.Hessmethod    = 'SD';
 %myoptions.GN_funF       = TODO
 
 myoptions.ls_nitermax   =	30; 
-myoptions.ls_beta       =	0.1; 
+myoptions.ls_beta       =	0.5; 
 
 %% Optimization routine
 %different coordinates to pass through
@@ -47,3 +47,6 @@ plot(leftpoints(:, 1), leftpoints(:, 2), 'k')
 plot(rightpoints(:, 1), rightpoints(:,2), 'k')
 plot(x, y, 'r')
 hold off
+
+%% Laptime
+time = laptime(x, y, n, 100/2.9, 11)

@@ -30,7 +30,7 @@ for idx = 1:n-2
     
     sum_of_constraints = gamma*(bigger_than_1+bigger_than_1_p1+smaller_than_1+smaller_than_1_p1);
     
-    F(idx) = kl*ds + sum_of_constraints;
+    F(idx) = F(idx) + kl*ds + sum_of_constraints;
     
     % Jacobian
     d_bigger_than_1 = gamma*(bigger_than_1~=0);
@@ -47,7 +47,7 @@ end
 %Jrd=zeros(n);
 for idx = 2:n-2
     ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
-    dtheta=atan((y(idx+1)-y(idx))/(x(idx+1)-x(idx)))-atan((y(idx)-y(idx-1))/(x(idx)-x(idx-1)));
+    dtheta=atan2((y(idx+1)-y(idx)),(x(idx+1)-x(idx)))-atan2((y(idx)-y(idx-1)),(x(idx)-x(idx-1)));
     rho=dtheta/ds;
     
     bigger_than_1 = max(0, alpha(idx)-1);
