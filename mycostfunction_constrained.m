@@ -78,7 +78,7 @@ for idx = 2:n-2
     gradient(idx-1) = gradient(idx-1) + kr*Jr_a_am1+d_bigger_than_1_m1+d_smaller_than_1_m1;
 end
 
-J=F'*F;
+J=sum(F);
 %gradF=(kl*Jld+kr*Jrd)';
 %gradient = gradF*F;
 

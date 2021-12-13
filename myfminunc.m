@@ -49,7 +49,8 @@ if strcmp(myoptions.Hessmethod,'GN')    % Gauss-Newton method
     xk              =   x0;
     [Fxk,gradFxk]  	=   mygradient(funF,x0,myoptions.gradmethod,myoptions.graddx);
     fxk            	=   Fxk'*Fxk;
-    gradfxk        	=   2*gradFxk*Fxk;
+    %gradfxk        	=   2*gradFxk*Fxk;
+    gradfxk        	=   gradFxk;
     Hk             	=   2*(gradFxk*gradFxk')+myoptions.GN_sigma*eye(n);
     pk            	=   -Hk\gradfxk;
     

@@ -7,11 +7,11 @@ w=1.992;
 e=0.40;
 
 %initialization of kr and kl, tuning of their ratio
-kl= 0;
-kr=1;
+kl= 20;
+kr=10;
 
 %gamma in case of constraint
-gamma = 0;
+gamma = 50;
 
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/Monza.csv");
