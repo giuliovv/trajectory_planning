@@ -1,4 +1,4 @@
-  function [J, gradient]= mycostfunction_constrained(n,rightpoints,leftpoints,alpha,kl,kr,gamma)
+  function [J, gradient]= mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha,kl,kr,gamma)
 
 % MYCOSTFUNCTION computes the value of the cost function. 
 %  INPUTS:  n             = number of segments dividing the track
@@ -78,8 +78,8 @@ for idx = 2:n-2
     gradient(idx-1) = gradient(idx-1) + kr*Jr_a_am1+d_bigger_than_1_m1+d_smaller_than_1_m1;
 end
 
-J=F;
+J=F';
 %gradF=(kl*Jld+kr*Jrd)';
-%gradient = gradF*F;
+%gradient = gradient';
 
 
