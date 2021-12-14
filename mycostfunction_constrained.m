@@ -25,8 +25,8 @@ for idx = 1:n-2
     
     bigger_than_1 = max(0, alpha(idx)-1);
     bigger_than_1_p1 = max(0, alpha(idx+1)-1);
-    smaller_than_1 = min(0, alpha(idx));
-    smaller_than_1_p1 = min(0, alpha(idx+1));
+    smaller_than_1 = abs(min(0, alpha(idx)));
+    smaller_than_1_p1 = abs(min(0, alpha(idx+1)));
     
     sum_of_constraints = gamma*(bigger_than_1+bigger_than_1_p1+smaller_than_1+smaller_than_1_p1);
     
@@ -53,9 +53,9 @@ for idx = 2:n-2
     bigger_than_1 = max(0, alpha(idx)-1);
     bigger_than_1_p1 = max(0, alpha(idx+1)-1);
     bigger_than_1_m1 = max(0, alpha(idx-1)-1);
-    smaller_than_1 = min(0, alpha(idx));
-    smaller_than_1_p1 = min(0, alpha(idx+1));
-    smaller_than_1_m1 = min(0, alpha(idx-1));
+    smaller_than_1 = abs(min(0, alpha(idx)));
+    smaller_than_1_p1 = abs(min(0, alpha(idx+1)));
+    smaller_than_1_m1 = abs(min(0, alpha(idx-1)));
     
     sum_of_constraints = gamma*(bigger_than_1+bigger_than_1_p1+bigger_than_1_m1+smaller_than_1+smaller_than_1_p1+smaller_than_1_m1);
     
