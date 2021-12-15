@@ -16,12 +16,12 @@
 
 %cost function
 
-F = zeros(n, 1);
+F = zeros(2*n, 1);
 gradient = zeros(n, 1);
 
 %Jld=zeros(n);
 for idx = 1:n-2
-    ds=(x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2;
+    ds=(x(idx+1)-x(idx))^2+(y(idx+1)-y(idx));
     
     bigger_than_1 = max(0, alpha(idx)-1);
     bigger_than_1_p1 = max(0, alpha(idx+1)-1);
@@ -30,7 +30,7 @@ for idx = 1:n-2
     
     sum_of_constraints = gamma*(bigger_than_1+bigger_than_1_p1+smaller_than_1+smaller_than_1_p1);
     
-    F(idx) = F(idx) + kl*ds + sum_of_constraints;
+    F(idx) = sqrt(kl)*ds + sum_of_constraints;
     
     % Jacobian
     d_bigger_than_1 = gamma*(bigger_than_1~=0);
@@ -59,7 +59,7 @@ for idx = 2:n-2
     
     sum_of_constraints = gamma*(bigger_than_1+bigger_than_1_p1+bigger_than_1_m1+smaller_than_1+smaller_than_1_p1+smaller_than_1_m1);
     
-    F(idx) = F(idx)+kr*rho + sum_of_constraints;
+    F(idx+n) = sqrt(kr)*rho + sum_of_constraints;
     
       % Jacobian
     d_bigger_than_1 = gamma*(bigger_than_1~=0);
@@ -80,6 +80,6 @@ end
 
 J=F';
 %gradF=(kl*Jld+kr*Jrd)';
-%gradient = gradient';
+gradient = gradient';
 
 
