@@ -31,8 +31,7 @@ myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'GN';
 myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
 
-myoptions.ls_nitermax   =	30; 
-myoptions.ls_beta       =	0.5; 
+myoptions.ls_nitermax   =	30;
 
 %% Optimization routine
 %different coordinates to pass through
