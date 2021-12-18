@@ -7,11 +7,11 @@ w=1.992;
 e=0.40;
 
 %initialization of kr and kl, tuning of their ratio
-kl= 0;
-kr=1;
+kl= 12;
+kr=10;
 
 %gamma in case of constraint
-gamma = 50;
+gamma = 100;
 
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/Monza.csv");
@@ -30,6 +30,7 @@ myoptions.nitermax      = 5e2;
 myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'GN';
 myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
+myoptions.GN_sigma      =	1e-7;
 
 myoptions.ls_nitermax   =	30;
 
