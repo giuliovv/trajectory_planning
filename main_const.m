@@ -11,7 +11,7 @@ kl= 12;
 kr=10;
 
 %gamma in case of constraint
-gamma = 100;
+gamma = 0;
 
 %track borders
 [rightpoints, leftpoints] = read_track("tracks/Monza.csv");
@@ -25,8 +25,8 @@ A               =   [];
 b               =   [];
 
 %% Linear inequality constraint parameters
-C               =   ones(1,n);
-d               =   0;
+C               =   [eye(n); -eye(n)];
+d               =   [zeros(n,1); -ones(n,1)];
 
 %% Optimization parameters
 myoptions   =   myoptimset;
@@ -38,7 +38,7 @@ myoptions.nitermax      = 1e2;
 myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'GN';
 myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
-myoptions.GN_sigma      =	100;
+myoptions.GN_sigma      =	1e2;
 
 myoptions.ls_nitermax   =	30;
 
