@@ -46,7 +46,7 @@ myoptions.ls_nitermax   =	30;
 %different coordinates to pass through
 %cost function
 
-[xstar,fxstar,niter,exitflag,xsequence] =myfmincon(@(x)mycostfunction_constrained(n,rightpoints,leftpoints,alpha, kl, kr, gamma),alpha0,A,b,C,d,0,1,myoptions);
+[Ustar,fxstar,niter,exitflag,xsequence] =myfmincon(@(x)mycostfunction_constrained(n,rightpoints,leftpoints,alpha, kl, kr, gamma),alpha0,A,b,C,d,0,1,myoptions);
 
 %% Plot
  [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);
