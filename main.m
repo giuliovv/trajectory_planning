@@ -7,7 +7,7 @@ w=1.992;
 e=0.40;
 
 %initialization of kr and kl, tuning of their ratio
-kl= 12;
+kl= 5;
 kr=10;
 
 %gamma in case of constraint
@@ -26,11 +26,11 @@ myoptions.ls_beta       = 0.3;
 myoptions.ls_c          = 0.1;
 myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
-myoptions.nitermax      = 5e2;
+myoptions.nitermax      = 1e2;
 myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'GN';
 myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
-myoptions.GN_sigma      =	1e-7;
+myoptions.GN_sigma      =	100;
 
 myoptions.ls_nitermax   =	30;
 
