@@ -5,6 +5,8 @@ clc
 %% Parameters of car and circuit
 w=1.992;
 e=0.40;
+approx_circuit_width = 6;
+rel_e = e/approx_circuit_width;
 
 %initialization of kr and kl, tuning of their ratio
 kl= 12;
@@ -26,7 +28,7 @@ b               =   [];
 
 %% Linear inequality constraint parameters
 C               =   [eye(n); -eye(n)];
-d               =   [zeros(n,1); -ones(n,1)];
+d               =   [zeros(n,1)+rel_e; -(ones(n,1)-rel_e)];
 
 %% Optimization parameters
 myoptions   =   myoptimset;
