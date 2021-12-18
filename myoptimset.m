@@ -15,6 +15,8 @@ function myoptions = myoptimset
 %                                       % change of optimization variables
 % myoptions.tolfun    	=	1e-12;      % Termination tolerance on the relative
 %                                       % improvement of the cost function
+% myoptions.tolconstr   =	1e-6;       % Constraint tolerance satisfaction
+%                                         tolerance
 % myoptions.nitermax   	=	50;         % Termination tolerance on the number of
 %                                       % iterations
 %                                         
@@ -38,7 +40,7 @@ function myoptions = myoptimset
 %                                       % line search iterations
 % 
 % %% Quasi-Newton method options
-myoptions.Hessmethod 	=	'BFGS';     % Method for Hessian computatimatlab change shortcut
+% myoptions.Hessmethod 	=	'BFGS';     % Method for Hessian computation
 %                                       % Exact =   Exact Newton. In this
 %                                                   case, function f(x) shall 
 %                                                   provide as second
@@ -56,6 +58,7 @@ myoptions.display    	=	'Iter';     % Display iteration output
 myoptions.xsequence    	=	'off';      % Store sequence of points {xk}
 myoptions.tolgrad    	=	1e-6;       % Termination tolerance on the norm
                                         % of the directional derivative
+myoptions.tolconstr    	=	1e-6;       % Constraint satisfaction tolerance
 myoptions.tolx          =	1e-12;      % Termination tolerance on the relative
                                         % change of optimization variables
 myoptions.tolfun        =	1e-12;      % Termination tolerance on the relative
@@ -101,6 +104,7 @@ myoptions.GN_funF       =	[];         % function providing the value of F
 myoptions.GN_sigma      =	0;          % coefficient to ensure Hessian is 
                                         % positive definite in Gauss-Newton
                                         % method (H=GradF*GradF'+eye(n)*sigma)
-
+myoptions.QPoptions     =   ...
+    optimset('Display','none','Algorithm','interior-point-convex');         % options for QP solver in SQP methods
 end
 

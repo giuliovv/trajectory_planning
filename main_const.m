@@ -20,6 +20,14 @@ n = height(rightpoints);
 %% Initialization of the coefficient alpha
 alpha0 = 0.5*ones(n, 1);
 
+%% Linear equality constraint parameters
+A               =   [];
+b               =   [];
+
+%% Linear inequality constraint parameters
+C               =   ones(1,n);
+d               =   0;
+
 %% Optimization parameters
 myoptions   =   myoptimset;
 myoptions.ls_beta       = 0.3;        
@@ -28,7 +36,7 @@ myoptions.gradmethod    = 'UP';
 myoptions.graddx        = eps^(1/3);
 myoptions.nitermax      = 1e2;
 myoptions.tolfun        =	1e-12;
-myoptions.Hessmethod    = 'BFGS';
+myoptions.Hessmethod    = 'GN';
 myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
 myoptions.GN_sigma      =	100;
 
@@ -38,7 +46,7 @@ myoptions.ls_nitermax   =	30;
 %different coordinates to pass through
 %cost function
 
-[Ustar,fxstar,k,exitflag,xsequence] = myfminunc(@(alpha)mycostfunction_constrained(n,rightpoints,leftpoints,alpha, kl, kr, gamma) ,alpha0,myoptions);
+[xstar,fxstar,niter,exitflag,xsequence] =myfmincon(@(x)mycostfunction_constrained(n,rightpoints,leftpoints,alpha, kl, kr, gamma),alpha0,A,b,C,d,0,1,myoptions);
 
 %% Plot
  [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);
