@@ -34,21 +34,25 @@ d               =   [zeros(n,1)+rel_e; -(ones(n,1)-rel_e)];
 myoptions   =   myoptimset;
 myoptions.ls_beta       = 0.3;        
 myoptions.ls_c          = 0.1;
-myoptions.gradmethod    = 'UP';
+myoptions.gradmethod    = 'CD';
 myoptions.graddx        = eps^(1/3);
 myoptions.nitermax      = 1e2;
 myoptions.tolfun        =	1e-12;
 myoptions.Hessmethod    = 'GN';
-myoptions.GN_funF       = @(alpha)mycostfunction_constrained_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
+myoptions.GN_funF       = @(alpha)mycostfunction_constrained_metodonuovo_GN(n,rightpoints,leftpoints,alpha, kl, kr, gamma);
 myoptions.GN_sigma      =	1e2;
 
-myoptions.ls_nitermax   =	30;
+myoptions.ls_nitermax   =	50;
 
 %% Optimization routine
 %different coordinates to pass through
 %cost function
 
-[Ustar,fxstar,niter,exitflag,xsequence] =myfmincon(@(x)mycostfunction_constrained(n,rightpoints,leftpoints,alpha, kl, kr, gamma),alpha0,A,b,C,d,0,1,myoptions);
+[Ustar,fxstar,niter,exitflag,xsequence] =myfmincon(@(alpha)mycostfunction_constrained_metodonuovo(n,rightpoints,leftpoints,alpha, kl, kr, gamma),alpha0,A,b,C,d,0,1,myoptions);
+
+% Direct lap time:
+% No gradient or GN provided
+%[Ustar,fxstar,niter,exitflag,xsequence] =myfmincon(@(alpha)costfunction_laptime(n,rightpoints,leftpoints,alpha,100/2.9, 11),alpha0,A,b,C,d,0,1,myoptions);
 
 %% Plot
  [x,y] = mycoordinates(n,rightpoints,leftpoints,Ustar);

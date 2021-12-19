@@ -48,8 +48,8 @@ end
 
 %Jrd=zeros(n);
 for idx = 2:n-2
-    ds=sqrt((x(idx+1)-x(idx))^2+(y(idx+1)-y(idx))^2);
-    dtheta=atan2((y(idx+1)-y(idx)),(x(idx+1)-x(idx)))-atan2((y(idx)-y(idx-1)),(x(idx)-x(idx-1)));
+    ds=sqrt((x(idx+1)-x(idx-1))^2+(y(idx+1)-y(idx-1))^2);
+    dtheta=2*abs(atan2((y(idx+1)-y(idx)),(x(idx+1)-x(idx)))-atan2((y(idx)-y(idx-1)),(x(idx)-x(idx-1))));
     rho=dtheta/ds;
     
     bigger_than_1 = max(0, alpha(idx)-1);
