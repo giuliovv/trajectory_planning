@@ -9,4 +9,4 @@ the track bounds. We also set an extra sicurity margin e = 0.40 m, chosen thinki
 ## Results:
 
 Max curvature on Monza:
-![Monza max curv](assets/max_curv.png?raw=true "Max curv Monza")
+![Monza max curv](assets/monza_max_curv.png?raw=true "Max curv Monza")
